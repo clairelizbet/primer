@@ -1,0 +1,9 @@
+:root {
+  --content-width: 640px;
+}
+
+main {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: var(--content-width);
+}
