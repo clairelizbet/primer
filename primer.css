@@ -1,0 +1,216 @@
+/*
+ * Primer
+ *
+ * Provides a starting point for responsive, accessible
+ * web design by selectively resetting some user agent
+ * styles and applying best practice recommendations
+ *
+ * https://github.com/clairelizbet/primer
+ */
+
+:root {
+  /*
+   * System fonts for popular operating systems and environments
+   */
+  --system-font-apple: -apple-system, BlinkMacSystemFont;
+  --system-font-microsoft: "Segoe UI";
+  --system-font-kde: "Oxygen-Sans";
+  --system-font-gnome: "Cantarell";
+  --system-font-canonical: "Ubuntu";
+  --system-font-google: "Roboto";
+
+  /*
+   * Some browsers do not yet understand the "system-ui" keyword,
+   * and must be provided with a named system font
+   */
+  --system-ui-font-fallback: var(--system-font-apple),
+    var(--system-font-microsoft), var(--system-font-kde),
+    var(--system-font-gnome), var(--system-font-canonical),
+    var(--system-font-google);
+
+  --system-ui-font: system-ui, var(--system-ui-font-fallback), sans-serif;
+
+  /*
+   * Monospace system fonts
+   */
+  --monospace-font-apple: "SF Mono";
+  --monospace-font-microsoft: "Cascadia Code";
+  --monospace-font-kde: "Oxygen Mono";
+  --monospace-font-gnome: "Source Code Pro";
+  --monospace-font-canonical: "Ubuntu Monospace";
+  --monospace-font-google: "Roboto Mono";
+
+  --ui-monospace-font-fallback: var(--monospace-font-apple),
+    var(--monospace-font-microsoft), var(--monospace-font-kde),
+    var(--monospace-font-gnome), var(--monospace-font-canonical),
+    var(--monospace-font-google);
+
+  --ui-monospace-font: ui-monospace, var(--ui-monospace-font-fallback),
+    monospace;
+
+  /**
+   * Accessibility guidelines suggest a line height ≥ 1.5 and
+   * spacing between paragraphs of at least 1.5x the line height
+   * {@link https://w3.org/TR/WCAG21/#visual-presentation}
+   */
+  --standard-line-height: 1.5em;
+  --paragraph-space-after: calc(1.5 * var(--standard-line-height));
+
+  /**
+   * Define spacing after headings relative to root font size
+   */
+  --heading-space-after: 1rem;
+
+  /**
+   * Calculate the vertical safe area of the viewport
+   */
+  --inset-top: env(safe-area-inset-top, 0);
+  --inset-bottom: env(safe-area-inset-bottom, 0);
+
+  --vertical-inset-size: calc(var(--inset-bottom) + var(--inset-top));
+  --vertical-safe-area: calc(100vh - var(--vertical-inset-size));
+}
+
+/**
+ * Universal styles, including :before and :after
+ * pseudo-elements which require explicit targeting
+ * {@link https://w3.org/TR/selectors/#pseudo-elements}
+ */
+*,
+:before,
+:after {
+  /*
+   * Include padding and border in width and height calculations
+   */
+  box-sizing: border-box;
+}
+
+body {
+  /*
+   * Disable auto text inflation on mobile, signaling
+   * to the browser that the styles which build on this
+   * primer will follow responsive design best practices
+   */
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+
+  /*
+   * Remove the body margin that many user agents apply
+   */
+  margin: 0;
+
+  /*
+   * Expand the body to fill the vertical safe area using dynamic viewport
+   * units if supported, otherwise use the value calculated from insets
+   * {@link https://w3.org/TR/css-values-4/#dynamic-viewport-size}
+   */
+  min-height: var(--safe-area-height);
+  min-height: 100dvh;
+
+  /*
+   * Use platform-specific fonts
+   */
+  font-family: var(--system-ui-font);
+
+  /*
+   * Set the default font size to the user-configured value
+   */
+  font-size: medium;
+
+  /*
+   * Apply a small, fixed amount of spacing for underlines
+   */
+  text-underline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /*
+   * Set font weight to one level heavier, relative to the heading's parent
+   */
+  font-weight: bolder;
+
+  /*
+   * Add spacing after headings and remove all other margins
+   */
+  margin: 0;
+
+  /*
+   * For horizontally flowing scripts (e.g. English),
+   * margin-block-end ≈ margin-bottom
+   */
+  margin-block-end: var(--heading-space-after);
+}
+
+p,
+pre,
+hr {
+  /*
+   * Remove default margins from paragraphs, text blocks, and horizontal rules
+   */
+  margin: 0;
+}
+
+p,
+pre {
+  /*
+   * Apply spacing after paragraphs and text blocks.
+   *
+   * For horizontally flowing scripts (e.g. English),
+   * margin-block-end ≈ margin-bottom
+   */
+  margin-block-end: var(--paragraph-space-after);
+}
+
+p,
+code pre {
+  /*
+   * Add spacing between paragraph lines for readability
+   */
+  line-height: var(--standard-line-height);
+}
+
+code,
+pre,
+kbd,
+samp {
+  /*
+   * Use system mono font for code and preformatted text display
+   */
+  font-family: var(--ui-monospace-font);
+}
+
+b,
+strong {
+  /*
+   * Increase the font weight of text that attention should
+   * be brought to (<b>), and of important text (<strong>)
+   */
+  font-weight: bolder;
+}
+
+abbr[title] {
+  /*
+   * Apply a thin underline to abbreviations that specify a title
+   */
+  text-decoration: 1px dotted underline;
+}
+
+hr {
+  /*
+   * Apply spacing below horizontal rules
+   */
+  margin-bottom: var(--paragraph-space-after);
+}
+
+img {
+  /*
+   * Prevent larger images from overflowing their parent containers
+   */
+  max-width: 100%;
+  max-height: 100%;
+}
