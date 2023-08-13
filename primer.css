@@ -104,7 +104,7 @@ body {
    * units if supported, otherwise use the value calculated from insets
    * {@link https://w3.org/TR/css-values-4/#dynamic-viewport-size}
    */
-  min-height: var(--safe-area-height);
+  min-height: var(--vertical-safe-area);
   min-height: 100dvh;
 
   /*
