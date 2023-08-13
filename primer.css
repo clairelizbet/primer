@@ -184,6 +184,13 @@ samp {
   font-family: var(--ui-monospace-font);
 }
 
+pre {
+  /*
+   * Prevent breaking horizontal layouts on narrow viewports.
+   */
+  overflow-x: scroll;
+}
+
 b,
 strong {
   /*
