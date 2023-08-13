@@ -8,7 +8,34 @@
  * https://github.com/clairelizbet/primer
  */
 
+/*
+ * Apply user-configurable font scaling for improved accessibility.
+ * On non-Apple systems, this is represented by the medium keyword
+ */
+@supports not (font: -apple-system-body) {
+  :root {
+    font-size: medium;
+  }
+}
+
+/*
+ * On Apple systems, user-configurable font scaling is controlled
+ * by the Dynamic Type setting and needs to be opted into
+ */
+@supports (font: -apple-system-body) {
+  :root {
+    font: -apple-system-body;
+  }
+}
+
 :root {
+  /*
+   * Apply a minimum font size of 16px for medium.
+   * This prevents automatic zoom on text inputs
+   * that some user agents like iOS Safari apply
+   */
+  --font-size-medium: max(16px, 1rem);
+
   /*
    * System fonts for popular operating systems and environments
    */
@@ -113,9 +140,9 @@ body {
   font-family: var(--system-ui-font);
 
   /*
-   * Set the default font size to the user-configured value
+   * Apply a default font size based on user preference
    */
-  font-size: medium;
+  font-size: var(--font-size-medium);
 
   /*
    * Apply a small, fixed amount of spacing for underlines
