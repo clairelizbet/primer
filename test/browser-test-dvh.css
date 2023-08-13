@@ -1,0 +1,20 @@
+body {
+  background-color: darkblue;
+}
+
+body > .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  margin: 0 auto;
+  max-width: var(--content-width);
+  min-height: inherit;
+}
+
+body > .container > div {
+  background-color: green;
+ 
+  padding: 1em;
+  flex-grow: 1;
+}
