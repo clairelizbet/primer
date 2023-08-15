@@ -1,16 +1,18 @@
-/*
+/**
  * Primer
  *
- * Provides a starting point for responsive, accessible
- * web design by selectively resetting some user agent
- * styles and applying best practice recommendations
+ * A starting point for responsive, accessible web
+ * design by selectively resetting some user agent
+ * styles and applying best practice recommendations.
  *
- * https://github.com/clairelizbet/primer
+ * {@version 2023.08.14}
+ *
+ * {@link https://github.com/clairelizbet/primer}
  */
 
-/*
+/**
  * Apply user-configurable font scaling for improved accessibility.
- * On non-Apple systems, this is represented by the medium keyword
+ * On non-Apple systems, this is represented by the medium keyword.
  */
 @supports not (font: -apple-system-body) {
   :root {
@@ -18,9 +20,11 @@
   }
 }
 
-/*
+/**
  * On Apple systems, user-configurable font scaling is controlled
- * by the Dynamic Type setting and needs to be opted into
+ * by the Dynamic Type setting and needs to be opted into.
+ *
+ * {@link https://webkit.org/blog/3709/using-the-system-font-in-web-content/}
  */
 @supports (font: -apple-system-body) {
   :root {
@@ -29,14 +33,13 @@
 }
 
 :root {
-  /*
-   * Apply a minimum font size of 16px for medium.
-   * This prevents automatic zoom on text inputs
-   * that some user agents like iOS Safari apply
+  /**
+   * Apply a minimum font size of 16px for medium. This prevents automatic
+   * zoom on text inputs that some user agents like iOS Safari apply.
    */
   --font-size-medium: max(16px, 1rem);
 
-  /*
+  /**
    * System fonts for popular operating systems and environments
    */
   --system-font-apple: -apple-system, BlinkMacSystemFont;
@@ -46,9 +49,9 @@
   --system-font-canonical: "Ubuntu";
   --system-font-google: "Roboto";
 
-  /*
+  /**
    * Some browsers do not yet understand the "system-ui" keyword,
-   * and must be provided with a named system font
+   * and must be provided with a named system font.
    */
   --system-ui-font-fallback: var(--system-font-apple),
     var(--system-font-microsoft), var(--system-font-kde),
@@ -57,7 +60,7 @@
 
   --system-ui-font: system-ui, var(--system-ui-font-fallback), sans-serif;
 
-  /*
+  /**
    * Monospace system fonts
    */
   --monospace-font-apple: "SF Mono";
@@ -76,8 +79,9 @@
     monospace;
 
   /**
-   * Accessibility guidelines suggest a line height ≥ 1.5 and
-   * spacing between paragraphs of at least 1.5x the line height
+   * Accessibility guidelines recommend a line height ≥ 1.5 and
+   * spacing between paragraphs of at least 1.5x the line height.
+   *
    * {@link https://w3.org/TR/WCAG21/#visual-presentation}
    */
   --standard-line-height: 1.5em;
@@ -106,14 +110,14 @@
 *,
 :before,
 :after {
-  /*
+  /**
    * Include padding and border in width and height calculations
    */
   box-sizing: border-box;
 }
 
 body {
-  /*
+  /**
    * Disable auto text inflation on mobile, signaling
    * to the browser that the styles which build on this
    * primer will follow responsive design best practices
@@ -121,12 +125,12 @@ body {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 
-  /*
+  /**
    * Remove the body margin that many user agents apply
    */
   margin: 0;
 
-  /*
+  /**
    * Expand the body to fill the vertical safe area using dynamic viewport
    * units if supported, otherwise use the value calculated from insets
    * {@link https://w3.org/TR/css-values-4/#dynamic-viewport-size}
@@ -134,17 +138,17 @@ body {
   min-height: var(--vertical-safe-area);
   min-height: 100dvh;
 
-  /*
+  /**
    * Use platform-specific fonts
    */
   font-family: var(--system-ui-font);
 
-  /*
+  /**
    * Apply a default font size based on user preference
    */
   font-size: var(--font-size-medium);
 
-  /*
+  /**
    * Apply a small, fixed amount of spacing for underlines
    */
   text-underline-offset: 2px;
@@ -156,46 +160,49 @@ h3,
 h4,
 h5,
 h6 {
-  /*
+  /**
    * Set font weight to one level heavier, relative to the heading's parent
    */
   font-weight: bolder;
 
-  /*
-   * Add spacing after headings and remove all other margins
+  /**
+   * Remove the default margin and apply spacing at the end of each heading
+   *
+   * {@link https://developer.mozilla.org/docs/Web/CSS/margin-block-end}
    */
   margin: 0;
-
-  /*
-   * For horizontally flowing scripts (e.g. English),
-   * margin-block-end ≈ margin-bottom
-   */
   margin-block-end: var(--heading-space-after);
 }
 
 p,
 pre,
 hr {
-  /*
+  /**
    * Remove default margins from paragraphs, text blocks, and horizontal rules
    */
   margin: 0;
 }
 
+hr {
+  /**
+   * Apply spacing below horizontal rules
+   */
+  margin-bottom: var(--paragraph-space-after);
+}
+
 p,
 pre {
-  /*
-   * Apply spacing after paragraphs and text blocks.
+  /**
+   * Apply spacing at the end of each paragraph and preformatted text block
    *
-   * For horizontally flowing scripts (e.g. English),
-   * margin-block-end ≈ margin-bottom
+   * {@link https://developer.mozilla.org/docs/Web/CSS/margin-block-end}
    */
   margin-block-end: var(--paragraph-space-after);
 }
 
 p,
 code pre {
-  /*
+  /**
    * Add spacing between paragraph lines for readability
    */
   line-height: var(--standard-line-height);
@@ -205,22 +212,22 @@ code,
 pre,
 kbd,
 samp {
-  /*
+  /**
    * Use system mono font for code and preformatted text display
    */
   font-family: var(--ui-monospace-font);
 }
 
 pre {
-  /*
-   * Prevent breaking horizontal layouts on narrow viewports.
+  /**
+   * Prevent breaking the layout on narrow viewports by scrolling as needed.
    */
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 b,
 strong {
-  /*
+  /**
    * Increase the font weight of text that attention should
    * be brought to (<b>), and of important text (<strong>)
    */
@@ -228,21 +235,14 @@ strong {
 }
 
 abbr[title] {
-  /*
+  /**
    * Apply a thin underline to abbreviations that specify a title
    */
   text-decoration: 1px dotted underline;
 }
 
-hr {
-  /*
-   * Apply spacing below horizontal rules
-   */
-  margin-bottom: var(--paragraph-space-after);
-}
-
 img {
-  /*
+  /**
    * Prevent larger images from overflowing their parent containers
    */
   max-width: 100%;
