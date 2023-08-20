@@ -3,7 +3,7 @@
 A starting point for responsive, accessible web design.
 
 ```sh
-npm install --save-dev @clairelizbet/primer
+npm install @clairelizbet/primer
 ```
 
 ## Purpose
