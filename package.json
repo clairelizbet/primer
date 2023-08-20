@@ -1,0 +1,21 @@
+{
+  "name": "@clairelizbet/primer",
+  "version": "1.0.0",
+  "description": "A starting point for responsive, accessible web design.",
+  "main": "primer.css",
+  "files": [
+    "primer.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clairelizbet/primer.git"
+  },
+  "keywords": [
+    "css reset"
+  ],
+  "author": "claire (https://clairecampbell.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clairelizbet/primer/issues"
+  }
+}
