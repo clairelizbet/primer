@@ -2,6 +2,10 @@
 
 A starting point for responsive, accessible web design.
 
+```sh
+npm install --save-dev @clairelizbet/primer
+```
+
 ## Purpose
 
 Primer selectively resets some user agent styles, similar to what
