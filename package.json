@@ -6,6 +6,12 @@
   "files": [
     "primer.css"
   ],
+  "scripts": {
+    "create-link": "npm link @clairelizbet/primer",
+    "install-link": "cd test/package-consumer && npm link @clairelizbet/primer",
+    "build-consumer": "cd test/package-consumer && npm run build",
+    "test": "npm run create-link && npm run install-link && npm run build-consumer"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/clairelizbet/primer.git"

@@ -1,0 +1,14 @@
+{
+  "name": "package-consumer",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@clairelizbet/primer": "^1.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
