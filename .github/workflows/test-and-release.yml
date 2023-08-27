@@ -1,23 +1,23 @@
-name: Build and publish release
+name: Test and publish release
 on:
   push:
     tags:
-      - "v?[0-9].[0-9].[0-9]"
+      - "v?[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
-  build-and-release:
+  test-and-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: clairelizbet/action-npm-install@v1
+
+      - uses: clairelizbet/action-test@v1
         with:
-          node-version: "18.x"
-          registry-url: "https://registry.npmjs.org"
-      - run: npm ci
-      - run: npm test
+          restore-build: false
+
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
