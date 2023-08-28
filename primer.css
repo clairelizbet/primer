@@ -1,46 +1,23 @@
 /**
  * Primer
  *
- * A starting point for responsive, accessible web
- * design by selectively resetting some user agent
- * styles and applying best practice recommendations.
+ * A starting point for responsive, accessible web design.
  *
- * Last updated 2023.08.19
- * {@version 1.0.0}
- * {@link https://github.com/clairelizbet/primer}
+ * Selectively resets some user agent styles, applies
+ * basic accessibility recommendations, and addresses
+ * a few common cross-browser nuisances.
+ *
+ * Last updated 28 August 2023
+ * @version 1.2.0
+ * @link https://github.com/clairelizbet/primer
+ * @license MIT
  */
 
-/**
- * Apply user-configurable font scaling for improved accessibility.
- * On non-Apple systems, this is represented by the medium keyword.
- */
-@supports not (font: -apple-system-body) {
-  :root {
-    font-size: medium;
-  }
-}
-
-/**
- * On Apple systems, user-configurable font scaling is controlled
- * by the Dynamic Type setting and needs to be opted into.
- *
- * {@link https://webkit.org/blog/3709/using-the-system-font-in-web-content/}
- */
-@supports (font: -apple-system-body) {
-  :root {
-    font: -apple-system-body;
-  }
-}
+/* =============================== Variables =============================== */
 
 :root {
   /**
-   * Apply a minimum font size of 16px for medium. This prevents automatic
-   * zoom on text inputs that some user agents like iOS Safari apply.
-   */
-  --font-size-medium: max(16px, 1rem);
-
-  /**
-   * System fonts for popular operating systems and environments
+   * System UI fonts for common operating systems and environments
    */
   --system-font-apple: -apple-system, BlinkMacSystemFont;
   --system-font-microsoft: "Segoe UI";
@@ -49,10 +26,6 @@
   --system-font-canonical: "Ubuntu";
   --system-font-google: "Roboto";
 
-  /**
-   * Some browsers do not yet understand the "system-ui" keyword,
-   * and must be provided with a named system font.
-   */
   --system-ui-font-fallback: var(--system-font-apple),
     var(--system-font-microsoft), var(--system-font-kde),
     var(--system-font-gnome), var(--system-font-canonical),
@@ -61,7 +34,7 @@
   --system-ui-font: system-ui, var(--system-ui-font-fallback), sans-serif;
 
   /**
-   * Monospace system fonts
+   * System monospace fonts for common operating systems and environments
    */
   --monospace-font-apple: "SF Mono";
   --monospace-font-microsoft: "Cascadia Code";
@@ -77,81 +50,110 @@
 
   --ui-monospace-font: ui-monospace, var(--ui-monospace-font-fallback),
     monospace;
+}
 
+:root {
   /**
-   * Accessibility guidelines recommend a line height ≥ 1.5 and
-   * spacing between paragraphs of at least 1.5x the line height.
+   * WCAG accessibility guidelines recommend a line height ≥ 1.5.
    *
-   * {@link https://w3.org/TR/WCAG21/#visual-presentation}
+   * @link https://w3.org/TR/WCAG21/#visual-presentation
+   *
+   * Unitless line-height works similarly to using em units. However, consider
+   * that inheritance passes down computed values. With em units, each child
+   * element inherits a line-height computed using the parent's font-size, even
+   * when their font-size differs. This can cause issues with overlapping text,
+   * and is why unitless line-height was chosen here.
+   *
+   * @link https://developer.mozilla.org/docs/Web/CSS/inheritance
    */
-  --standard-line-height: 1.5em;
-  --paragraph-space-after: calc(1.5 * var(--standard-line-height));
+  --standard-line-height: 1.5;
 
   /**
-   * Define spacing after headings relative to root font size
+   * WCAG accessibility guidelines recommend spacing
+   * between paragraphs of at least 1.5x the line height.
+   *
+   * @link https://w3.org/TR/WCAG21/#visual-presentation
+   */
+  --paragraph-space-after: calc(1.5em * var(--standard-line-height));
+
+  /**
+   * A fixed amount of spacing after headings for consistency
    */
   --heading-space-after: 1rem;
 
   /**
-   * Calculate the vertical safe area of the viewport
+   * Calculate a font size that ensures a minimum of 16px, even when
+   * the root element is configured to respect user font scaling.
+   *
+   * This results in user font sclaing set to less than 16px not
+   * being respected, but prevents the zoom on focus behavior
+   * found in some user agents, notably iOS Safari.
+   *
+   * @link https://css-tricks.com/16px-or-larger-text-prevents-ios-form-zoom/
    */
-  --inset-top: env(safe-area-inset-top, 0);
-  --inset-bottom: env(safe-area-inset-bottom, 0);
-
-  --vertical-inset-size: calc(var(--inset-bottom) + var(--inset-top));
-  --vertical-safe-area: calc(100vh - var(--vertical-inset-size));
+  --font-size-medium: max(16px, 1rem);
 }
 
+/* ================================ Styles ================================= */
+
 /**
- * Universal styles, including :before and :after
- * pseudo-elements which require explicit targeting
- * {@link https://w3.org/TR/selectors/#pseudo-elements}
+ * Includes padding and border in width and height calculations.
+ *
+ * The :before and :after pseudo-elements are explicit targeted,
+ * since they're excluded from the tree so * will not include them.
+ *
+ * @link https://w3.org/TR/selectors/#pseudo-elements
  */
 *,
 :before,
 :after {
-  /**
-   * Include padding and border in width and height calculations
-   */
   box-sizing: border-box;
+}
+
+/**
+ * The medium keyword is controlled by user-configurable font scaling. 
+ * A notable exception is iOS Safari, which requires an opt-in for
+ * Apple Dynamic Type to be applied.
+ *
+ * @link https://webkit.org/blog/3709/using-the-system-font-in-web-content/
+ */
+@supports not (font: -apple-system-body) {
+  :root {
+    font-size: medium;
+  }
+}
+
+@supports (font: -apple-system-body) {
+  :root {
+    font: -apple-system-body;
+  }
 }
 
 body {
   /**
-   * Disable auto text inflation on mobile, signaling
-   * to the browser that the styles which build on this
-   * primer will follow responsive design best practices
+   * Disables auto text inflation.
    */
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 
   /**
-   * Remove the body margin that many user agents apply
+   * Removes the body margin that many user agents apply.
    */
   margin: 0;
 
   /**
-   * Expand the body to fill the vertical safe area using dynamic viewport
-   * units if supported, otherwise use the value calculated from insets
-   * {@link https://w3.org/TR/css-values-4/#dynamic-viewport-size}
+   * Expands the body to vertically fill the dynamic viewport.
+   *
+   * @link https://w3.org/TR/css-values-4/#dynamic-viewport-size
    */
-  min-height: var(--vertical-safe-area);
   min-height: 100dvh;
 
   /**
-   * Use platform-specific fonts
-   */
-  font-family: var(--system-ui-font);
-
-  /**
-   * Apply a default font size based on user preference
+   * Applies a default font size based on user preference,
+   * and sets font family to reflect the system UI.
    */
   font-size: var(--font-size-medium);
-
-  /**
-   * Apply a small, fixed amount of spacing for underlines
-   */
-  text-underline-offset: 2px;
+  font-family: var(--system-ui-font);
 }
 
 h1,
@@ -161,14 +163,12 @@ h4,
 h5,
 h6 {
   /**
-   * Set font weight to one level heavier, relative to the heading's parent
+   * Sets font weight to one level heavier, relative to the heading's parent.
    */
   font-weight: bolder;
 
   /**
-   * Remove the default margin and apply spacing at the end of each heading
-   *
-   * {@link https://developer.mozilla.org/docs/Web/CSS/margin-block-end}
+   * Removes the default margin and applies spacing at the end of each heading.
    */
   margin: 0;
   margin-block-end: var(--heading-space-after);
@@ -178,14 +178,14 @@ p,
 pre,
 hr {
   /**
-   * Remove default margins from paragraphs, text blocks, and horizontal rules
+   * Removes margins from paragraphs, text blocks, and horizontal rules.
    */
   margin: 0;
 }
 
 hr {
   /**
-   * Apply spacing below horizontal rules
+   * Applies paragraph spacing below horizontal rules for consistency.
    */
   margin-bottom: var(--paragraph-space-after);
 }
@@ -193,9 +193,7 @@ hr {
 p,
 pre {
   /**
-   * Apply spacing at the end of each paragraph and preformatted text block
-   *
-   * {@link https://developer.mozilla.org/docs/Web/CSS/margin-block-end}
+   * Applies spacing at the end of each paragraph and preformatted text block.
    */
   margin-block-end: var(--paragraph-space-after);
 }
@@ -203,7 +201,7 @@ pre {
 p,
 code pre {
   /**
-   * Add spacing between paragraph lines for readability
+   * Adds spacing between paragraph lines for readability.
    */
   line-height: var(--standard-line-height);
 }
@@ -213,14 +211,14 @@ pre,
 kbd,
 samp {
   /**
-   * Use system mono font for code and preformatted text display
+   * Applies system monospace font to code and preformatted text displays.
    */
   font-family: var(--ui-monospace-font);
 }
 
 pre {
   /**
-   * Prevent breaking the layout on narrow viewports by scrolling as needed.
+   * Prevents breaking the layout on narrow viewports by scrolling as needed.
    */
   overflow-x: auto;
 }
@@ -228,22 +226,14 @@ pre {
 b,
 strong {
   /**
-   * Increase the font weight of text that attention should
-   * be brought to (<b>), and of important text (<strong>)
+   * Sets font weight to one level heavier, relative to the heading's parent.
    */
   font-weight: bolder;
 }
 
-abbr[title] {
-  /**
-   * Apply a thin underline to abbreviations that specify a title
-   */
-  text-decoration: 1px dotted underline;
-}
-
 img {
   /**
-   * Prevent larger images from overflowing their parent containers
+   * Prevents larger images from overflowing their parent containers.
    */
   max-width: 100%;
   max-height: 100%;
