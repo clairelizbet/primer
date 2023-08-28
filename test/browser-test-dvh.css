@@ -14,7 +14,7 @@ body > .container {
 
 body > .container > div {
   background-color: green;
- 
+
   padding: 1em;
   flex-grow: 1;
 }
