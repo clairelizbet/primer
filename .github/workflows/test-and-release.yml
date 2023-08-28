@@ -1,4 +1,5 @@
 name: Test and publish release
+
 on:
   push:
     tags:
@@ -14,18 +15,12 @@ jobs:
         with:
           restore-build: false
 
+      - uses: clairelizbet/action-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            "${GITHUB_WORKSPACE}/primer.css"
+
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
-        run: |
-          gh release create "$tag" \
-            --draft \
-            --repo "$GITHUB_REPOSITORY" \
-            --title "Version ${tag#v}" \
-            --notes-file "${GITHUB_WORKSPACE}/.github/release.md" \
-            "${GITHUB_WORKSPACE}/primer.css"
