@@ -226,7 +226,7 @@ pre {
 b,
 strong {
   /**
-   * Sets font weight to one level heavier, relative to the heading's parent.
+   * Sets font weight to one level heavier, relative to the element's parent.
    */
   font-weight: bolder;
 }
