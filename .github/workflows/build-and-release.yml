@@ -6,7 +6,7 @@ on:
       - "v?[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
-  test-and-release:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - uses: clairelizbet/action-build@v1

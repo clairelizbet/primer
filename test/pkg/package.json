@@ -2,6 +2,7 @@
   "name": "package-consumer",
   "version": "1.0.0",
   "private": true,
+  "files": [],
   "scripts": {
     "build": "parcel build --no-cache --public-url . index.html dvh.html",
     "start": "parcel serve --no-cache index.html dvh.html"
