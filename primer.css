@@ -50,9 +50,7 @@
 
   --ui-monospace-font: ui-monospace, var(--ui-monospace-font-fallback),
     monospace;
-}
 
-:root {
   /**
    * WCAG accessibility guidelines recommend a line height ≥ 1.5.
    *
@@ -99,14 +97,14 @@
 /**
  * Includes padding and border in width and height calculations.
  *
- * The :before and :after pseudo-elements are explicit targeted,
+ * The ::before and ::after pseudo-elements are explicit targeted,
  * since they're excluded from the tree so * will not include them.
  *
  * @link https://w3.org/TR/selectors/#pseudo-elements
  */
 *,
-:before,
-:after {
+::before,
+::after {
   box-sizing: border-box;
 }
 

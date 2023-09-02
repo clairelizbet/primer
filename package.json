@@ -10,6 +10,7 @@
     "create-link": "npm link @clairelizbet/primer",
     "install-link": "cd test/package-consumer && npm link @clairelizbet/primer",
     "build-consumer": "cd test/package-consumer && npm run build",
+    "lint": "stylelint primer.css",
     "test": "npm run create-link && npm run install-link && npm run build-consumer"
   },
   "repository": {
@@ -22,6 +23,8 @@
     "url": "https://github.com/clairelizbet/primer/issues"
   },
   "devDependencies": {
-    "prettier": "^3.0.2"
+    "prettier": "^3.0.2",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard": "^34.0.0"
   }
 }
