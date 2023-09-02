@@ -7,11 +7,12 @@
     "primer.css"
   ],
   "scripts": {
-    "create-link": "npm link @clairelizbet/primer",
-    "install-link": "cd test/package-consumer && npm link @clairelizbet/primer",
-    "build-consumer": "cd test/package-consumer && npm run build",
+    "build": "playwright install --with-deps && npm run lint && npm link @clairelizbet/primer",
     "lint": "stylelint primer.css",
-    "test": "npm run create-link && npm run install-link && npm run build-consumer"
+    "test": "npm run test:pkg && npm run test:e2e",
+    "dev": "cd test/pkg && npm link @clairelizbet/primer && npm start",
+    "test:pkg": "cd test/pkg && npm link @clairelizbet/primer && npm run build",
+    "test:e2e": "playwright test"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,10 @@
     "url": "https://github.com/clairelizbet/primer/issues"
   },
   "devDependencies": {
+    "@playwright/test": "^1.37.1",
     "prettier": "^3.0.2",
     "stylelint": "^15.10.3",
-    "stylelint-config-standard": "^34.0.0"
+    "stylelint-config-standard": "^34.0.0",
+    "typescript": "^5.2.2"
   }
 }

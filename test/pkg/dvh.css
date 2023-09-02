@@ -1,18 +1,13 @@
-body {
-  background-color: darkblue;
-}
-
-body > .container {
+main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  margin: 0 auto;
-  max-width: var(--content-width);
+  padding: 0;
   min-height: inherit;
 }
 
-body > .container > div {
+main > div {
   background-color: green;
 
   padding: 1em;
