@@ -132,6 +132,12 @@
 body {
   /**
    * Disables auto text inflation.
+   *
+   * If targeting versions of Chrome and Safari before mid-2013,
+   * the recommended value is "auto" as these browsers will disallow
+   * page zoom completely when set to "none".
+   *
+   * @link https://bugs.webkit.org/show_bug.cgi?id=56543
    */
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
