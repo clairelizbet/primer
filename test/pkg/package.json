@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "parcel build index.html"
+    "build": "parcel build --no-cache --public-url . index.html dvh.html",
+    "start": "parcel serve --no-cache index.html dvh.html"
   },
   "dependencies": {
     "@clairelizbet/primer": "^1.0.0"
