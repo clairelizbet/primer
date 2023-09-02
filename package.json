@@ -1,6 +1,6 @@
 {
   "name": "@clairelizbet/primer",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A starting point for responsive, accessible web design.",
   "main": "primer.css",
   "files": [
