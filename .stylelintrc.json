@@ -1,0 +1,26 @@
+{
+  "extends": "stylelint-config-standard",
+
+  "rules": {
+    "value-keyword-case": [
+      "lower",
+      { "ignoreProperties": ["/.*font(?:-.*)?/"] }
+    ],
+
+    "custom-property-empty-line-before": null,
+
+    "property-no-vendor-prefix": [
+      true,
+      { "ignoreProperties": ["text-size-adjust"] }
+    ],
+
+    "font-family-no-missing-generic-family-keyword": [
+      true,
+      { "ignoreFontFamilies": ["-apple-system-body"] }
+    ],
+
+    "declaration-property-unit-allowed-list": {
+      "/(?=.*line)(?=.*height)/": []
+    }
+  }
+}
