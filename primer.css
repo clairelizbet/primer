@@ -174,10 +174,13 @@ h6 {
   font-weight: bolder;
 
   /**
-   * Removes the default margin and applies spacing at the end of each heading.
+   * Removes the default margin and applies spacing below each heading.
+   *
+   * This bottom margin will be replaced by an orientation-agnostic block
+   * end margin in supported browsers.
    */
   margin: 0;
-  margin-block-end: var(--heading-space-after);
+  margin-bottom: var(--heading-space-after);
 }
 
 p,
@@ -189,6 +192,46 @@ hr {
   margin: 0;
 }
 
+p,
+pre {
+  /**
+   * Applies spacing below each paragraph and preformatted text block.
+   *
+   * This bottom margin will be replaced by an orientation-agnostic block
+   * end margin in supported browsers.
+   */
+  margin-bottom: var(--paragraph-space-after);
+}
+
+@supports (margin-block-end: var(--heading-space-after)) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /**
+     * Removes bottom spacing fallback and applies orientation-agnostic
+     * spacing at the end of each heading in supported browsers.
+     */
+    margin-bottom: 0;
+    margin-block-end: var(--heading-space-after);
+  }
+}
+
+@supports (margin-block-end: var(--paragraph-space-after)) {
+  p,
+  pre {
+    /**
+     * Removes bottom spacing fallback and applies orientation-agnostic
+     * spacing at the end of each paragraph and preformatted text block
+     * in supported browsers.
+     */
+    margin-bottom: 0;
+    margin-block-end: var(--paragraph-space-after);
+  }
+}
+
 hr {
   /**
    * Applies paragraph spacing below horizontal rules for consistency.
@@ -196,16 +239,7 @@ hr {
   margin-bottom: var(--paragraph-space-after);
 }
 
-p,
-pre {
-  /**
-   * Applies spacing at the end of each paragraph and preformatted text block.
-   */
-  margin-block-end: var(--paragraph-space-after);
-}
-
-p,
-code pre {
+p {
   /**
    * Adds spacing between paragraph lines for readability.
    */
@@ -243,4 +277,11 @@ img {
    */
   max-width: 100%;
   max-height: 100%;
+}
+
+code pre {
+  /**
+   * Adds spacing between preformatted text lines for readability.
+   */
+  line-height: var(--standard-line-height);
 }
