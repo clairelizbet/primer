@@ -58,9 +58,9 @@
    *
    * Unitless line-height works similarly to using em units. However, consider
    * that inheritance passes down computed values. With em units, each child
-   * element inherits a line-height computed using the parent's font-size, even
-   * when their font-size differs. This can cause issues with overlapping text,
-   * and is why unitless line-height was chosen here.
+   * inherits a line-height value computed using the font-size of its parent,
+   * even when the child's font-size differs. This can cause wrapped text
+   * to overlap, so unitless line-height is typically preferred.
    *
    * @link https://developer.mozilla.org/docs/Web/CSS/inheritance
    */
