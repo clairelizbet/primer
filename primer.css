@@ -130,7 +130,12 @@
 body {
   /**
    * Disables auto text inflation.
+   *
+   * The -webkit- and -moz- prefixes are included here as they
+   * are still required for Safari and Firefox for Android,
+   * respectively, as of October 2023.
    */
+  -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 
