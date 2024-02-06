@@ -38,6 +38,6 @@ browser behavior.
 - The body's `min-height` is set to `100dvh` to avoid bugs with some vertical
   flex layouts
 
-## 📋 License
+## License 📃
 
-[![MIT License - Some rights reserved](https://raw.githubusercontent.com/clairelizbet/licenses/main/mit/mit.svg)](license.md)
+[![CC0 Public Domain](https://raw.githubusercontent.com/clairelizbet/licenses/main/creative-commons/cc-zero/cc-zero.svg)](license.md)

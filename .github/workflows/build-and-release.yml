@@ -12,12 +12,6 @@ jobs:
       - uses: clairelizbet/action-build@v1
       - uses: clairelizbet/action-test@v1
 
-      - uses: clairelizbet/action-release@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: |
-            "${GITHUB_WORKSPACE}/primer.css"
-
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
